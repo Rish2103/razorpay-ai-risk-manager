@@ -1,4 +1,4 @@
-﻿# 🛡️ Razorpay Abuse & Return-to-Origin (RTO) Defense Sentinel
+# 🛡️ Razorpay Abuse & Return-to-Origin (RTO) Defense Sentinel
 
 > **Razorpay Buildathon Track 02: "AI Risk Manager"**  
 > *Autonomous Defensive Risk Gating, Honest Quantitative Evaluation & Cost-Optimal Margin Protection for E-Commerce Merchants.*
@@ -32,32 +32,32 @@ Cash-on-Delivery (COD) and return abuse represent the largest operational financ
 
 ```mermaid
 flowchart TD
-    subgraph Data Layer
-        GEN[Realistic Synthetic Engine] -->|80%| TR[train.csv (12k rows)]
-        GEN -->|20%| TE[held_out_test.csv (3k rows)]
+    subgraph DataLayer ["Data Layer"]
+        GEN["Realistic Synthetic Engine"] -->|80%| TR["train.csv (12k rows)"]
+        GEN -->|20%| TE["held_out_test.csv (3k rows)"]
     end
 
-    subgraph Intelligence Layer
-        TR --> TRAIN[LightGBM Classifier]
-        TRAIN --> OPT[Cost-Utility Threshold Optimizer]
-        TRAIN --> SHAP[TreeSHAP Explainer]
-        OPT --> ARTIFACTS[risk_model.pkl & evaluation_report.json]
+    subgraph IntelligenceLayer ["Intelligence Layer"]
+        TR --> TRAIN["LightGBM Classifier"]
+        TRAIN --> OPT["Cost-Utility Threshold Optimizer"]
+        TRAIN --> SHAP["TreeSHAP Explainer"]
+        OPT --> ARTIFACTS["risk_model.pkl & evaluation_report.json"]
         SHAP --> ARTIFACTS
-        TE --> EVAL[Held-out Test Evaluation]
+        TE --> EVAL["Held-out Test Evaluation"]
         EVAL --> ARTIFACTS
     end
 
-    subgraph Service Layer (Port 8000)
-        ARTIFACTS --> API[FastAPI Webhook Service: /v1/risk/evaluate]
-        API --> DEC[Tri-Action Engine: ALLOW / CHALLENGE / BLOCK]
-        API --> LOG[Real-Time SHAP Audit Breakdown]
+    subgraph ServiceLayer ["Service Layer (Port 8000)"]
+        ARTIFACTS --> API["FastAPI Webhook Service: /v1/risk/evaluate"]
+        API --> DEC["Tri-Action Engine: ALLOW / CHALLENGE / BLOCK"]
+        API --> LOG["Real-Time SHAP Audit Breakdown"]
     end
 
-    subgraph Presentation Layer (Port 8501)
-        API --> ST[Streamlit Executive Dashboard]
-        ST --> SIM[Interactive Live Transaction Simulator]
-        ST --> PNL[P&L Financial Savings Explorer]
-        ST --> AUD[Regulatory SHAP Audit Trail]
+    subgraph PresentationLayer ["Presentation Layer (Port 8501)"]
+        API --> ST["Streamlit Executive Dashboard"]
+        ST --> SIM["Interactive Live Transaction Simulator"]
+        ST --> PNL["P&L Financial Savings Explorer"]
+        ST --> AUD["Regulatory SHAP Audit Trail"]
     end
 ```
 
